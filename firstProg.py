@@ -1,0 +1,1 @@
+print("Due to unfortunate circumstances, I'm alive.")
