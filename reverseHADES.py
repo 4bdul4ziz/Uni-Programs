@@ -9,7 +9,7 @@ def speak(text):
     engineio.say(text)
     engineio.runAndWait()
 
-speak("What do you want me to say?")
+speak("hello, abdul!")
 while(1):
     phrase = input("--> ")
     if (phrase == "exit"):
