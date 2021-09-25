@@ -68,5 +68,7 @@
         "cstdbool": "c",
         "typeinfo": "c",
         "version": "c"
-    }
+    },
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
 }
