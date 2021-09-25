@@ -8,7 +8,7 @@ int foo()
 }
 
 long nanosec(struct timeval t)
-{ /* Calculate nanoseconds in a timeval structure */
+{
     return ((t.tv_sec * 10000000 + t.tv_usec) * 1000);
 }
 
@@ -19,7 +19,6 @@ int main()
     float avgTimeSysCall, avgTimeFuncCall;
     struct timeval t1, t2;
 
-    /* Find average time for System call */
     res = gettimeofday(&t1, NULL);
     assert(res == 0);
     for (i = 0; i < N_iterations; i++)
@@ -30,7 +29,6 @@ int main()
     assert(res == 0);
     avgTimeSysCall = (nanosec(t2) - nanosec(t1)) / (N_iterations * 1.0);
 
-    /* Find average time for Function call */
     res = gettimeofday(&t1, NULL);
     assert(res == 0);
     for (i = 0; i < N_iterations; i++)
