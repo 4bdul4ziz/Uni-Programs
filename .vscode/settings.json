@@ -67,7 +67,8 @@
         "thread": "c",
         "cstdbool": "c",
         "typeinfo": "c",
-        "version": "c"
+        "version": "c",
+        "curses.h": "c"
     },
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true
