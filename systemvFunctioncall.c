@@ -3,9 +3,27 @@
 #include <assert.h>
 #include <stdio.h>
 
-long add(long a, long b)
+long factorial(int);
+
+int fact(int n, long f)
 {
-    return (a + b);
+    n, f = 100;
+    if (n < 0)
+        return 0;
+    else
+    {
+        f = factorial(n);
+        return 1;
+    }
+
+    return 0;
+}
+long factorial(int n)
+{
+    if (n == 0) // Base case
+        return 1;
+    else
+        return (n * factorial(n - 1));
 }
 
 long nanosec(struct timeval t)
@@ -36,7 +54,7 @@ int main()
     assert(res == 0);
     for (i = 0; i < N_iterations; i++)
     {
-        j = add(i, j);
+        j = fact(i, j);
     }
     res = gettimeofday(&t2, NULL);
     assert(res == 0);
