@@ -2,10 +2,10 @@
 #include <stdbool.h>
 #define SIZE 5
 
-//Basic value initialisation
+//declaration
 int queue[SIZE], front = -1, rear = -1;
 
-//Function created to handle enqueue
+//enqueuing function
 void enqueue(int item)
 {
     if (rear == SIZE - 1)
@@ -14,7 +14,7 @@ void enqueue(int item)
     }
     else
     {
-        //The first element condition
+        //checking if the element is the first element
         if (front == -1)
         {
             front = 0;
@@ -26,7 +26,7 @@ void enqueue(int item)
     }
 }
 
-//Function created to handle dequeue
+//dequeuing function
 void dequeue()
 {
     if (front == -1)
@@ -47,7 +47,8 @@ void dequeue()
     }
 }
 
-//function to print the queue
+//extra function, not asked in the question. Used to verify IsEmpty()
+//print queue
 void printQueue()
 {
     if (rear == -1)
@@ -86,6 +87,7 @@ int main()
     dequeue();
     dequeue();
     dequeue();
+
     isEmpty();
 
     printQueue();
