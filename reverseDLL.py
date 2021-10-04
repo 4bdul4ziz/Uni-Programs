@@ -6,9 +6,9 @@ class Node:
 
 def printList(msg, head):
 
-    print(msg + ": ", end='')
+    print(msg + ": ")
     while head:
-        print(head.data, end=" —> ")
+        print(head.data)
         head = head.next
 
     print("None")
