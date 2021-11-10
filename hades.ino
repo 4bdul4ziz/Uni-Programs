@@ -17,7 +17,7 @@ void setup() {
 
 }
 
- 
+
 void loop() {
   while (BT.available())
   {  //Check if there is an available byte to read
