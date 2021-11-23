@@ -22,6 +22,7 @@ void FirstFit()
         frag[i] = temp;
         bf[ff[i]] = 1;
     }
+    printf("Abdul Aziz A.B - 20BRS1185");
     printf("\nProcess_no\tProcess_size \tMP_no\t   MP_size\tFragment");
     for (i = 1; i <= nf; i++)
     {
