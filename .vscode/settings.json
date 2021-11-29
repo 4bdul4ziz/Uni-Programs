@@ -71,5 +71,6 @@
         "curses.h": "c"
     },
     "editor.formatOnPaste": true,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "black"
 }
