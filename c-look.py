@@ -89,5 +89,3 @@ head = 143
 print("Initial position of head:", head)
 
 CLOOK(arr, head)
-
-# This code is contributed by rag2127
