@@ -30,7 +30,7 @@ void loop() {
     Serial.println(readvoice);
     if(readvoice == "forward") 
     {
-      //forward
+      
       digitalWrite(Lmotor_1, HIGH);
       digitalWrite(Lmotor_2, LOW);
       digitalWrite(Rmotor_1, HIGH);
