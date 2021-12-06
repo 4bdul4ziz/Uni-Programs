@@ -7,24 +7,7 @@ void display(int arr[], int n)
         printf(" %d ", arr[i]);
     }
 }
-void bubble_sort(int arr[], int n)
-{
-    int i, j, temp;
-    for (i = 0; i < n; i++)
-    {
-        for (j = 0; j < n - i - 1; j++)
-        {
-            if (arr[j] > arr[j + 1])
-            {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-    printf("After Bubble sort Elements are : ");
-    display(arr, n);
-}
+
 void selection_sort(int arr[], int n)
 {
     int i, j, temp;
@@ -76,25 +59,22 @@ int main()
     while (1)
     {
         printf("\nMenu: \n");
-        printf("\n1. Bubble Sort\n2. Selection Sort\n3. Insertion Sort\n4. Display Array.\n5. Exit the Program.\n");
+        printf("\n1. Selection Sort\n2. Insertion Sort\n3. Display Array.\n4. Exit the Program.\n");
         printf("\nEnter your Choice : ");
         scanf("%d", &choice);
         switch (choice)
 
         {
         case 1:
-            bubble_sort(arr, n);
-            break;
-        case 2:
             selection_sort(arr, n);
             break;
-        case 3:
+        case 2:
             insertion_sort(arr, n);
             break;
-        case 4:
+        case 3:
             display(arr, n);
             break;
-        case 5:
+        case 4:
             return 0;
         default:
             break;
