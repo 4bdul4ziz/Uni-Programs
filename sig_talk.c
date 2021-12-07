@@ -1,14 +1,8 @@
-/* sig_talk.c --- Example of how 2 processes can talk */
-/* to each other using kill() and signal() */
-/* We will fork() 2 process and let the parent send a few */
-/* signals to it`s child  */
-
-/* cc sig_talk.c -o sig_talk  */
 
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 void sighup(); /* routines child will call upon sigtrap */
 void sigint();
