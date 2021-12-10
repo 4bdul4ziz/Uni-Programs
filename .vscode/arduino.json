@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:uno",
-    "programmer": "arduino:arduinoisp",
+    "programmer": "arduino:avrisp",
     "sketch": "hades.ino",
-    "port": "/dev/cu.usbmodem1101"
+    "port": "/dev/cu.usbmodem101"
 }
