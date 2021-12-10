@@ -1,81 +1,80 @@
 #include <SoftwareSerial.h>
-SoftwareSerial BT(2, 3); //TX, RX respetively
+SoftwareSerial BT(0, 1); //TX, RX respetively
 String readvoice;
 
-int Lmotor_1= 10;
-int Lmotor_2= 11;
-int Rmotor_1= 12;
-int Rmotor_2= 13;
+#define MLa 8  //left motor 1st pin
+#define MLb 9  //left motor 2nd pin
+#define MRa 10 //right motor 1st pin
+#define MRb 11 //right motor 2nd pin
 
-void setup() {
- BT.begin(9600);
- Serial.begin(9600);
-  pinMode(Lmotor_1, OUTPUT);// declaring Motors pin as output pin
-  pinMode(Lmotor_2, OUTPUT);
-  pinMode(Rmotor_1, OUTPUT);
-  pinMode(Rmotor_2, OUTPUT);
-
+void setup()
+{
+  BT.begin(9600);
+  Serial.begin(9600);
+  pinMode(MLa, OUTPUT); // declaring Motors pin as output pin
+  pinMode(MLb, OUTPUT);
+  pinMode(MRa, OUTPUT);
+  pinMode(MRb, OUTPUT);
 }
 
-
-void loop() {
+void loop()
+{
   while (BT.available())
-  {  //Check if there is an available byte to read
-  delay(10); //Delay added to make thing stable
-  char c = BT.read(); //Conduct a serial read
-  readvoice += c; //build the string- "forward", "reverse", "left" and "right"
-  } 
-  if (readvoice.length() > 0) 
+  {                     //Check if there is an available byte to read
+    delay(10);          //Delay added to make thing stable
+    char c = BT.read(); //Conduct a serial read
+    readvoice += c;     //build the string- "go straight", "reverse", "left" and "right"
+  }
+  if (readvoice.length() > 0)
   {
     Serial.println(readvoice);
-    if(readvoice == "forward") 
+    if (readvoice == "forward")
     {
-      
-      digitalWrite(Lmotor_1, HIGH);
-      digitalWrite(Lmotor_2, LOW);
-      digitalWrite(Rmotor_1, HIGH);
-      digitalWrite(Rmotor_2, LOW);
-      delay(100);
+      //forward
+      digitalWrite(MLa, HIGH);
+      digitalWrite(MLb, LOW);
+      digitalWrite(MRa, HIGH);
+      digitalWrite(MRb, LOW);
+      delay(5);
     }
-    else if(readvoice == "back")
+    else if (readvoice == "back")
     {
       //backward
-      digitalWrite(Lmotor_1, LOW);
-      digitalWrite(Lmotor_2, HIGH);
-      digitalWrite(Rmotor_1, LOW);
-      digitalWrite(Rmotor_2, HIGH);
-      delay(100);
+      digitalWrite(MLa, LOW);
+      digitalWrite(MLb, HIGH);
+      digitalWrite(MRa, LOW);
+      digitalWriMRb, HIGH);
+      delay(5);te(
     }
-  
-    else if (readvoice == "turn right" )
+
+    else if (readvoice == "spin right")
     {
       //Rightturn
-      digitalWrite(Lmotor_1, HIGH);
-      digitalWrite(Lmotor_2, LOW);
-      digitalWrite(Rmotor_1, LOW);
-      digitalWrite(Rmotor_2, LOW);
-      delay (100);
-    
+      digitalWrite(MLa, LOW);
+      digitalWrite(MLb, HIGH);
+      digitalWrite(MRa, HIGH);
+      digitalWrite(MRb, LOW);
+      delay(5);
     }
-    else if ( readvoice == "turn left")
-   {
+    else if (readvoice == "spin left")
+    {
       //LeftTurn
-      digitalWrite(Lmotor_1, LOW);
-      digitalWrite(Lmotor_2, LOW);
-      digitalWrite(Rmotor_1, HIGH);
-      digitalWrite(Rmotor_2, LOW);
-     delay (100);
-   }
-   else if (readvoice == "stop")
-   {
+      digitalWrite(MLa, HIGH);
+      digitalWrite(MLb, LOW);
+      digitalWrite(MRa, LOW);
+      digitalWrite(MRb, HIGH);
+      delay(5);
+    }
+    else if (readvoice == "calm down")
+    {
       //Stop
-      digitalWrite(Lmotor_1, LOW);
-      digitalWrite(Lmotor_2, LOW);
-      digitalWrite(Rmotor_1, LOW);
-      digitalWrite(Rmotor_2, LOW);
-      delay (100);
-   }
-  
-  readvoice="";}//Reset the variable
+      digitalWrite(MLa, LOW);
+      digitalWrite(MLb, LOW);
+      digitalWrite(MRa, LOW);
+      digitalWrite(MRb, LOW);
+      delay(5);
+    }
 
+    readvoice = "";
+  } //Reset the variable
 }
