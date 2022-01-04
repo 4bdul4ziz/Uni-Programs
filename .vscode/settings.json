@@ -72,5 +72,7 @@
     },
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
-    "python.formatting.provider": "yapf"
+    "python.formatting.provider": "yapf",
+    "vscode-dosbox.command.dosbox":"open -a dosbox --args",
+
 }
