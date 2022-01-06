@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch LargestElement_array",
+            "request": "launch",
+            "mainClass": "LargestElement_array",
+            "projectName": "Uni programs_8cda9cf3"
+        },
+        {
             "name": "(lldb) Attach",
             "type": "cppdbg",
             "request": "attach",
