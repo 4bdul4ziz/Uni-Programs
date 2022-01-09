@@ -68,7 +68,10 @@
         "cstdbool": "c",
         "typeinfo": "c",
         "version": "c",
-        "curses.h": "c"
+        "curses.h": "c",
+        "*.rmd": "markdown",
+        "THREADS.C": "cpp",
+        "FILEDEMO.C": "cpp"
     },
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
