@@ -71,7 +71,8 @@
         "curses.h": "c",
         "*.rmd": "markdown",
         "THREADS.C": "cpp",
-        "FILEDEMO.C": "cpp"
+        "FILEDEMO.C": "cpp",
+        "__tuple": "cpp"
     },
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
