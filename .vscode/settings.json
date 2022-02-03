@@ -72,7 +72,8 @@
         "*.rmd": "markdown",
         "THREADS.C": "cpp",
         "FILEDEMO.C": "cpp",
-        "__tuple": "cpp"
+        "__tuple": "cpp",
+        "ranges": "cpp"
     },
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
