@@ -1,74 +1,40 @@
-#include <algorithm>
-#include <chrono>
+// Consider the list of elements in the array where the elements are sorted and duplicates are allowed. In order to find out the position of first and last occurrence of duplicate elements. The basic idea of divide and conquer approach is to divide the elements into similar subproblem and recursively solve them. This approach is better as compared to the brute force approach since the running time is reduced. Use the divide and conquer approach in order to find the first and last occurrences of elements in the problem
+
 #include <iostream>
-#include <string>
 #include <vector>
-using namespace std;
-using namespace std::chrono;
-class Student
-{
-private:
-public:
-    void input();
-    void output();
-    string name;
-    char regno[9];
-    int marks;
-};
+#include <algorithm>
 
-void Student::input()
-{
+void sort(){
+    int n;
+    std::cin >> n;
+    std::vector<int> arr(n);
+    for(int i = 0; i < n; i++){
+        std::cin >> arr[i];
+    }
+    int first = 0;
+    int last = n - 1;
+    int mid = (first + last) / 2;
+    while(first <= last){
+        if(arr[mid] == arr[mid + 1]){
+            first = mid + 1;
+        }
+        else if(arr[mid] == arr[mid - 1]){
+            last = mid - 1;
+        }
+        else{
+            break;
+        }
+        mid = (first + last) / 2;
+    }
+    std::cout << first << " " << last << std::endl;
+}
+//use divide and conquer to find the first and last duplicate elements
+void firstOccurrence(){
+    
 }
 
-void Student::output()
-{
-}
 
-void selection_sort(int arr[], int n)
-{
-    int i, j, min_ind;
-    int temp;
-    for (i = 0; i < n - 1; i++)
-    {
-        min_ind = i; //minimum element in unsorted array
-        for (j = i + 1; j < n; j++)
-            if (arr[j] < arr[min_ind])
-                min_ind = j;
 
-        //swap(&arr[min_idx], &arr[i]);` // Swap the found minimum element with the first element
-        temp = arr[min_ind];
-        arr[min_ind] = arr[i];
-        arr[i] = temp;
-    }
-}
+int main() {
 
-int main()
-{
-    Student arr[5];
-    int arr_to_be_sorted[5];
-    cout << "Taking input for 5 students" << endl;
-    for (int i = 0; i < 5; i++)
-    {
-        cout << "Enter Student name: ";
-        cin >> arr[i].name;
-        cout << "Enter Student registration number: ";
-        cin >> arr[i].regno;
-        cout << "Enter Student marks: ";
-        cin >> arr[i].marks;
-        arr_to_be_sorted[i] = arr[i].marks;
-    }
-
-    selection_sort(arr_to_be_sorted, 5);
-
-    cout << "\nThe details of the students are as follows: " << endl;
-
-    for (int i = 0; i < 5; i++)
-    {
-        cout << "\nStudent name: " << arr[i].name;
-        cout << "\nStudent registration number: " << arr[i].regno;
-        arr[i].marks = arr_to_be_sorted[i];
-        cout << "\n Student marks: " << arr[i].marks;
-    }
-
-    return 0;
 }
