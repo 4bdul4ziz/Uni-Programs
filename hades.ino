@@ -1,11 +1,11 @@
 #include <SoftwareSerial.h>
-SoftwareSerial BT(0, 1); //TX, RX respetively
+SoftwareSerial BT(0, 1); // TX, RX respetively
 String readvoice;
 
-#define MLa 8  //left motor 1st pin
-#define MLb 9  //left motor 2nd pin
-#define MRa 10 //right motor 1st pin
-#define MRb 11 //right motor 2nd pin
+#define MLa 8  // left motor 1st pin
+#define MLb 9  // left motor 2nd pin
+#define MRa 10 // right motor 1st pin
+#define MRb 11 // right motor 2nd pin
 
 void setup()
 {
@@ -20,36 +20,36 @@ void setup()
 void loop()
 {
   while (BT.available())
-  {                     //Check if there is an available byte to read
-    delay(10);          //Delay added to make thing stable
-    char c = BT.read(); //Conduct a serial read
-    readvoice += c;     //build the string- "go straight", "reverse", "left" and "right"
+  {                     // Check if there is an available byte to read
+    delay(10);          // Delay added to make thing stable
+    char c = BT.read(); // Conduct a serial read
+    readvoice += c;     // build the string- "go straight", "reverse", "left" and "right"
   }
   if (readvoice.length() > 0)
   {
     Serial.println(readvoice);
     if (readvoice == "forward")
     {
-      //forward
+      // forward
       digitalWrite(MLa, HIGH);
-      digitalWrite(MLb, LOW);
-      digitalWrite(MRa, HIGH);
+      digitalWrite(MLb, HIGH);
+      digitalWrite(MRa, LOW);
       digitalWrite(MRb, LOW);
       delay(5);
     }
     else if (readvoice == "back")
     {
-      //backward
+      // backward
       digitalWrite(MLa, LOW);
-      digitalWrite(MLb, HIGH);
-      digitalWrite(MRa, LOW);
+      digitalWrite(MLb, LOW);
+      digitalWrite(MRa, HIGH);
       digitalWriMRb, HIGH);
-      delay(5);te(
+      delay(5);
     }
 
     else if (readvoice == "spin right")
     {
-      //Rightturn
+      // Rightturn
       digitalWrite(MLa, LOW);
       digitalWrite(MLb, HIGH);
       digitalWrite(MRa, HIGH);
@@ -58,7 +58,7 @@ void loop()
     }
     else if (readvoice == "spin left")
     {
-      //LeftTurn
+      // LeftTurn
       digitalWrite(MLa, HIGH);
       digitalWrite(MLb, LOW);
       digitalWrite(MRa, LOW);
@@ -67,7 +67,7 @@ void loop()
     }
     else if (readvoice == "calm down")
     {
-      //Stop
+      // Stop
       digitalWrite(MLa, LOW);
       digitalWrite(MLb, LOW);
       digitalWrite(MRa, LOW);
@@ -76,5 +76,5 @@ void loop()
     }
 
     readvoice = "";
-  } //Reset the variable
+  } // Reset the variable
 }
