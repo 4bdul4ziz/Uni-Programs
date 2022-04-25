@@ -43,7 +43,7 @@ void loop()
       digitalWrite(MLa, LOW);
       digitalWrite(MLb, LOW);
       digitalWrite(MRa, HIGH);
-      digitalWriMRb, HIGH);
+      digitalWrite(MRb, HIGH);
       delay(5);
     }
 
