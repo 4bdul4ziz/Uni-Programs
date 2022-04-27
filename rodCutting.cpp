@@ -14,22 +14,27 @@ int rodCutting(int n, std::vector<int> &p, std::vector<int> &dp)
     {
         return dp[n];
     }
-    int q = -1;
+    int max_profit = -1;
     for (int i = 1; i <= n; i++)
     {
-        q = std::max(q, p[i] + rodCutting(n - i, p, dp));
+        max_profit = std::max(max_profit, p[i] + rodCutting(n - i, p, dp));
+        // return max_profit;
     }
-    dp[n] = q;
-    return q;
+    dp[n] = max_profit;
+    return max_profit;
+    return dp[n];
 }
 
 int main()
 {
     using namespace std::chrono;
-    std::vector<int> p = {1, 5, 8, 9, 10, 17, 17, 20};
-    std::vector<int> dp(p.size(), -1);
-
-    int n = p.size() - 1;
+    std::vector<int> p = {1, 5, 8, 9, 10, 17, 17, 20}; // profits
+    std::vector<int> dp(p.size(), -1);                 // no. of the cuts
+    for (int i = 0; i < p.size(); i++)
+    {
+        printf("%d ", dp[i]);
+    }
+    int n = p.size() - 1; // size of the rod
     auto start = std::chrono::high_resolution_clock::now();
     int q = rodCutting(n, p, dp);
     auto stop = std::chrono::high_resolution_clock::now();
