@@ -1,40 +1,47 @@
-// Consider the list of elements in the array where the elements are sorted and duplicates are allowed. In order to find out the position of first and last occurrence of duplicate elements. The basic idea of divide and conquer approach is to divide the elements into similar subproblem and recursively solve them. This approach is better as compared to the brute force approach since the running time is reduced. Use the divide and conquer approach in order to find the first and last occurrences of elements in the problem
-
 #include <iostream>
-#include <vector>
-#include <algorithm>
+//#include <chrono>
+#include <cmath>
+#include <stdio.h>
+#include <stdlib.h>
+using namespace std;
+// using namespace std::chrono;
 
-void sort(){
-    int n;
-    std::cin >> n;
-    std::vector<int> arr(n);
-    for(int i = 0; i < n; i++){
-        std::cin >> arr[i];
+int missing_num_in_series(int arr[], int n) // using binary search to find the missing number
+{
+    int low = 0;
+    int high = n - 1;
+    int mid;
+    while (low <= high)
+    {
+        mid = (low + high) / 2;
+        if (arr[mid] == mid)
+        {
+            low = mid + 1;
+        }
+        else
+        {
+            high = mid - 1;
+        }
     }
-    int first = 0;
-    int last = n - 1;
-    int mid = (first + last) / 2;
-    while(first <= last){
-        if(arr[mid] == arr[mid + 1]){
-            first = mid + 1;
-        }
-        else if(arr[mid] == arr[mid - 1]){
-            last = mid - 1;
-        }
-        else{
-            break;
-        }
-        mid = (first + last) / 2;
-    }
-    std::cout << first << " " << last << std::endl;
-}
-//use divide and conquer to find the first and last duplicate elements
-void firstOccurrence(){
-    
+    return low;
 }
 
-
-
-int main() {
-
+int main()
+{
+    int arr[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int missing = missing_num_in_series(arr, n);
+    cout << "The missing number is " << missing;
+    return 0;
 }
+/*     int arr1[] = {1, 3, 5, 7, 11};
+    int arr2[] = {1, 4, 7, 13, 16};
+    int n1 = sizeof(arr1) / sizeof(arr1[0]);
+    int n2 = sizeof(arr2) / sizeof(arr2[0]);
+    int missing = missing_num_in_series(arr1, n1);
+    cout << "The missing term from the AP sequence is : " << endl;
+    cout << missing << endl;
+    missing = missing_num_in_series(arr2, n2);
+    cout << "The missing term from the AP sequence is : " << endl;
+    cout << missing << endl;
+    return 0; */
