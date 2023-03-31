@@ -1,7 +1,8 @@
 import heapq
 
+
 class DisjointSets:
-    '''Finds quickly if two points belong to same set'''
+    """Finds quickly if two points belong to same set"""
 
     def __init__(self, totalNumOfSets):
         self.parent = [None] * totalNumOfSets
@@ -17,15 +18,15 @@ class DisjointSets:
         return id
 
     def findFast(self, id):
-        '''path compression heuristic. faster than find() in future calls to this method
-        because we update the parent info'''
+        """path compression heuristic. faster than find() in future calls to this method
+        because we update the parent info"""
         if id != self.parent[id]:
             self.parent[id] = self.findFast(self.parent[id])
         return self.parent[id]
 
     def union(self, id1, id2):
-        '''union by rank heuristic. rank stores the height.
-        update the id of the element that has smaller rank'''
+        """union by rank heuristic. rank stores the height.
+        update the id of the element that has smaller rank"""
 
         rootId1 = self.findFast(id1)
         rootId2 = self.findFast(id2)
@@ -42,7 +43,7 @@ class DisjointSets:
                 self.rank[rootId2] += 1
 
 
-class PriorityQueue():
+class PriorityQueue:
 
     REMOVED = "REMOVED"
 
@@ -51,7 +52,7 @@ class PriorityQueue():
         self.nodeInfo = {}
 
     def addNodeWithPriority(self, node, priority):
-        '''adds or updates the node in priority queue'''
+        """adds or updates the node in priority queue"""
 
         if node in self.nodeInfo:
             self.removeNode(node)
@@ -78,8 +79,8 @@ class PriorityQueue():
 
 
 def kruskal(adjacencyList, edgeWeights):
-    '''Finds minimum spanning tree i.e., minimum total edge length required to connect all nodes.
-    Repeatedly adds next smallest edge which doesn't create cycle between nodes'''
+    """Finds minimum spanning tree i.e., minimum total edge length required to connect all nodes.
+    Repeatedly adds next smallest edge which doesn't create cycle between nodes"""
 
     numberOfNodes = len(adjacencyList)
     solutionSet = set()
@@ -105,8 +106,8 @@ def kruskal(adjacencyList, edgeWeights):
 
 
 def prim(adjacencyList, edgeWeights, nodeName):
-    '''Finds minimum spanning tree i.e., minimum total edge length required to connect all nodes
-    Repeatedly adds nodes to the solution tree using the smallest edge'''
+    """Finds minimum spanning tree i.e., minimum total edge length required to connect all nodes
+    Repeatedly adds nodes to the solution tree using the smallest edge"""
 
     cost = {}
     parent = {}
@@ -131,7 +132,9 @@ def prim(adjacencyList, edgeWeights, nodeName):
 
         nodesInSolTree.add(fromNode)
         for toNode in adjacencyList[fromNode]:
-            if (toNode not in nodesInSolTree) and (cost[toNode] > edgeWeights[(fromNode, toNode)]):
+            if (toNode not in nodesInSolTree) and (
+                cost[toNode] > edgeWeights[(fromNode, toNode)]
+            ):
                 cost[toNode] = edgeWeights[(fromNode, toNode)]
                 parent[toNode] = fromNode
                 priorityQueue.addNodeWithPriority(toNode, cost[toNode])
@@ -140,38 +143,42 @@ def prim(adjacencyList, edgeWeights, nodeName):
     return parent, totalSpan
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
-    adjacencyList = {'A': {'B', 'D', 'E'},
-                     'B': {'A', 'C', 'E', 'F'},
-                     'C': {'B', 'F'},
-                     'D': {'A', 'E'},
-                     'E': {'A', 'B', 'D', 'F'},
-                     'F': {'B', 'C', 'E'}}
+    adjacencyList = {
+        "A": {"B", "D", "E"},
+        "B": {"A", "C", "E", "F"},
+        "C": {"B", "F"},
+        "D": {"A", "E"},
+        "E": {"A", "B", "D", "F"},
+        "F": {"B", "C", "E"},
+    }
 
-    edgeWeights = {('A', 'B'): 4,
-                   ('A', 'D'): 2,
-                   ('A', 'E'): 1,
-                   ('B', 'A'): 4,
-                   ('B', 'C'): 8,
-                   ('B', 'E'): 5,
-                   ('B', 'F'): 6,
-                   ('C', 'B'): 8,
-                   ('C', 'F'): 1,
-                   ('D', 'A'): 2,
-                   ('D', 'E'): 3,
-                   ('E', 'A'): 1,
-                   ('E', 'B'): 5,
-                   ('E', 'D'): 3,
-                   ('E', 'F'): 9,
-                   ('F', 'B'): 6,
-                   ('F', 'C'): 1,
-                   ('F', 'E'): 9}
+    edgeWeights = {
+        ("A", "B"): 4,
+        ("A", "D"): 2,
+        ("A", "E"): 1,
+        ("B", "A"): 4,
+        ("B", "C"): 8,
+        ("B", "E"): 5,
+        ("B", "F"): 6,
+        ("C", "B"): 8,
+        ("C", "F"): 1,
+        ("D", "A"): 2,
+        ("D", "E"): 3,
+        ("E", "A"): 1,
+        ("E", "B"): 5,
+        ("E", "D"): 3,
+        ("E", "F"): 9,
+        ("F", "B"): 6,
+        ("F", "C"): 1,
+        ("F", "E"): 9,
+    }
 
     solutionSet, totalSpan = kruskal(adjacencyList, edgeWeights)
-    print('\nKruskal: Minimum Spanning Tree:', solutionSet)
-    print('Kruskal: Total Span:', totalSpan)
+    print("\nKruskal: Minimum Spanning Tree:", solutionSet)
+    print("Kruskal: Total Span:", totalSpan)
 
-    parentOfNodesPrim, totalSpanPrim = prim(adjacencyList, edgeWeights, 'A')
-    print('\nPrim: Minimum Spanning Tree:', parentOfNodesPrim)
-    print('Prim: Total Span:', totalSpan)
+    parentOfNodesPrim, totalSpanPrim = prim(adjacencyList, edgeWeights, "A")
+    print("\nPrim: Minimum Spanning Tree:", parentOfNodesPrim)
+    print("Prim: Total Span:", totalSpan)

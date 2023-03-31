@@ -1,5 +1,3 @@
-
-
 class Node:
     def __init__(self, data, next=None):
         self.data = data
@@ -68,7 +66,7 @@ def reverseAlternatingKNodes(head, k):
     return head
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     head = None
     for i in reversed(range(10)):

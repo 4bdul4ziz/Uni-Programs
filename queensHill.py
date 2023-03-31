@@ -4,6 +4,7 @@ import random
 chess_board = [0, 0, 0, 0, 0, 0, 0, 0]
 initial_chess_board = chess_board
 
+
 def show_chess_board(chess_board_p):
 
     new_chess_board = []
@@ -21,7 +22,8 @@ def show_chess_board(chess_board_p):
         print()
     print()
 
-#heuristic cost = no of queens attacking one another
+
+# heuristic cost = no of queens attacking one another
 def determine_heuristic_cost(chess_board):
     h = 0
 
@@ -37,12 +39,16 @@ def determine_heuristic_cost(chess_board):
             offset = i - j
 
             # check if there is diagonal interaction
-            if chess_board[i] == chess_board[j] + offset or chess_board[i] == chess_board[j] - offset:
+            if (
+                chess_board[i] == chess_board[j] + offset
+                or chess_board[i] == chess_board[j] - offset
+            ):
                 h += 1
     return h
 
-#there are 56(8*7) neighbouring states
-#function to determine the next best move based on the h cost of all neighbouring states
+
+# there are 56(8*7) neighbouring states
+# function to determine the next best move based on the h cost of all neighbouring states
 def best_move(chess_board):
     moves = []
     moves.append([chess_board, determine_heuristic_cost(chess_board)])
@@ -62,18 +68,19 @@ def best_move(chess_board):
         if row[1] < current:
             current = row[1]
 
-    #there can be more than 1 best neighbouring state due to same h values
+    # there can be more than 1 best neighbouring state due to same h values
     best_moves = []
     for row in moves:
         if row[1] == current:
             best_moves.append(row[0])
 
-    #randomly select one move out of all the best moves
+    # randomly select one move out of all the best moves
     next_move = random.choice(best_moves)
 
     return next_move
 
-#show initial state of the chess_board and its h cost
+
+# show initial state of the chess_board and its h cost
 show_chess_board(chess_board)
 print("h = " + str(determine_heuristic_cost(chess_board)))
 print()
@@ -83,15 +90,18 @@ action_sequence = []
 heuristic_cost = determine_heuristic_cost(chess_board)
 action_sequence.append([chess_board, heuristic_cost])
 
-#loop through until the minimum h cost state is achieved
+# loop through until the minimum h cost state is achieved
 no_of_steps = 0
 state = 1
-while (state == 1):
+while state == 1:
 
     chess_board_next_state = best_move(chess_board)
 
-    #if the next best state is the current state, it has reached a maximum state
-    if chess_board == chess_board_next_state or heuristic_cost == determine_heuristic_cost(chess_board_next_state):
+    # if the next best state is the current state, it has reached a maximum state
+    if (
+        chess_board == chess_board_next_state
+        or heuristic_cost == determine_heuristic_cost(chess_board_next_state)
+    ):
         state = 0
         show_chess_board(chess_board)
         cost = determine_heuristic_cost(chess_board)

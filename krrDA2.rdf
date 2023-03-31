@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:ns1="vit/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <rdf:Description rdf:about="vit/enrolledIn">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/David">
+    <rdf:type rdf:resource="vit/HOD"/>
+    <ns1:hasDean rdf:resource="vit/Sarah"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/SoftwareEngineering">
+    <rdf:type rdf:resource="vit/Course"/>
+    <ns1:belongsToDepartment rdf:resource="vit/ComputerScience"/>
+    <ns1:offeredInSemester rdf:resource="vit/Fall2022"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/hasHOD">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/hasParent">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/John">
+    <rdf:type rdf:resource="vit/Student"/>
+    <ns1:hasParent rdf:resource="vit/Kate"/>
+    <ns1:enrolledIn rdf:resource="vit/SoftwareEngineering"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/hasDean">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/Teacher">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/Kate">
+    <rdf:type rdf:resource="vit/Parent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/Student">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/Sarah">
+    <rdf:type rdf:resource="vit/Dean"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/Dean">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/Tom">
+    <rdf:type rdf:resource="vit/Teacher"/>
+    <ns1:teaches rdf:resource="vit/SoftwareEngineering"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/belongsToDepartment">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/Course">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/offeredInSemester">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/Semester">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/HOD">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/Mary">
+    <rdf:type rdf:resource="vit/Student"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/ComputerScience">
+    <rdf:type rdf:resource="vit/Course"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/Fall2022">
+    <rdf:type rdf:resource="vit/Semester"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/teaches">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/Parent">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="vit/hasTeacher">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+</rdf:RDF>

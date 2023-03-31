@@ -95,5 +95,3 @@ direction = "left"
 print("Initial position of head:", head)
 
 LOOK(arr, head, direction)
-
-

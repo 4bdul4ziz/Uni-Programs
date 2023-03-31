@@ -1,0 +1,58 @@
+@prefix ns1: <https://chennai.vit.ac.in/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ns1:Course a rdfs:Class .
+
+ns1:Dean a rdfs:Class .
+
+ns1:HOD a rdfs:Class .
+
+ns1:Parent a rdfs:Class .
+
+ns1:Semester a rdfs:Class .
+
+ns1:Student a rdfs:Class .
+
+ns1:Teacher a rdfs:Class .
+
+ns1:David a ns1:HOD ;
+    ns1:hasDean ns1:Sarah .
+
+ns1:John a ns1:Student ;
+    ns1:enrolledIn ns1:SoftwareEngineering ;
+    ns1:hasParent ns1:Kate .
+
+ns1:Mary a ns1:Student .
+
+ns1:Tom a ns1:Teacher ;
+    ns1:teaches ns1:SoftwareEngineering .
+
+ns1:belongsToDepartment a rdf:Property .
+
+ns1:enrolledIn a rdf:Property .
+
+ns1:hasDean a rdf:Property .
+
+ns1:hasHOD a rdf:Property .
+
+ns1:hasParent a rdf:Property .
+
+ns1:hasTeacher a rdf:Property .
+
+ns1:offeredInSemester a rdf:Property .
+
+ns1:teaches a rdf:Property .
+
+ns1:ComputerScience a ns1:Course .
+
+ns1:Fall2022 a ns1:Semester .
+
+ns1:Kate a ns1:Parent .
+
+ns1:Sarah a ns1:Dean .
+
+ns1:SoftwareEngineering a ns1:Course ;
+    ns1:belongsToDepartment ns1:ComputerScience ;
+    ns1:offeredInSemester ns1:Fall2022 .
+

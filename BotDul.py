@@ -26,9 +26,11 @@ if os.path.exists("config.ini"):
     config.read("config.ini")
 
     try:
-        token = config['Config']['token']
+        token = config["Config"]["token"]
     except KeyError:
-        logger.critical("No token found in config, please ensure that the config formatting is correct")
+        logger.critical(
+            "No token found in config, please ensure that the config formatting is correct"
+        )
         time.sleep(5)
         exit(1)
 
@@ -38,9 +40,11 @@ if os.path.exists("config.ini"):
         exit(1)
 
     try:
-        snip = config['Config']['snip']
+        snip = config["Config"]["snip"]
     except KeyError:
-        logger.critical("No path to snip found in config, please ensure that the config formatting is correct")
+        logger.critical(
+            "No path to snip found in config, please ensure that the config formatting is correct"
+        )
         time.sleep(5)
         exit(1)
 
@@ -51,7 +55,7 @@ if os.path.exists("config.ini"):
 
 else:
     logger.error("No config file, creating one now")
-    with open("config.ini", 'w') as f:
+    with open("config.ini", "w") as f:
         f.write(default_config)
     logger.info("Config created, please set config!")
     time.sleep(3)
@@ -59,8 +63,8 @@ else:
 
 logger.info("Config loaded")
 
-bot = commands.Bot(command_prefix=['m.'], self_bot=True)
-bot.remove_command('help')
+bot = commands.Bot(command_prefix=["m."], self_bot=True)
+bot.remove_command("help")
 
 
 @bot.event
@@ -86,15 +90,19 @@ async def music_loop():
         if song != last_song:
             last_song = song
             if song == "":
-                await bot.change_presence(afk=True, status=discord.Status.invisible, game=None)
+                await bot.change_presence(
+                    afk=True, status=discord.Status.invisible, game=None
+                )
                 logger.info("Cleared Discord Status because no song is playing")
             else:
                 await bot.change_presence(
                     afk=True,
                     status=discord.Status.invisible,
-                    game=discord.Game(name=song, type=2)
-                    )
-                logger.info(f"Set Discord status to {song.encode('ascii', 'ignore').decode()}")
+                    game=discord.Game(name=song, type=2),
+                )
+                logger.info(
+                    f"Set Discord status to {song.encode('ascii', 'ignore').decode()}"
+                )
         await asyncio.sleep(8)
 
 

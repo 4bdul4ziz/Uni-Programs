@@ -1,0 +1,8 @@
+# Q. Create a dataset that contains four columns, first column is mark 1, second is mark 2, third is mark 3 for five students, find the average marks obtained by each student and display seperately.
+
+```{r}
+library(data.table)
+library(dplyr)
+library(ggplot2)
+
+```

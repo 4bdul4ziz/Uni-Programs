@@ -81,5 +81,6 @@
     "editor.formatOnSave": true,
     "python.formatting.provider": "yapf",
     "vscode-dosbox.command.dosbox":"open -a dosbox --args",
-    "prolog.executablePath": "//"
+    "prolog.executablePath": "//",
+    "editor.formatOnType": true
 }
