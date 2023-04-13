@@ -1,48 +1,42 @@
+#!/usr/bin/env python
+
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
+from geometry_msgs.msg import Twist
 
+class ObstacleDetection(Node):
 
-class ObstacleAvoidance(Node):
     def __init__(self):
-        super().__init__('obstacle_avoidance')
-        self.cmd_vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
-        self.laser_sub = self.create_subscription(LaserScan, '/scan', self.laser_callback, 10)
+        super().__init__('obstacle_detection_node')
 
-    def laser_callback(self, msg):
-        ranges = msg.ranges
-        front_angles = [-30, -15, 0, 15, 30]
-        front_ranges = [ranges[int(angle/0.25)] for angle in front_angles]
-        min_range = min(front_ranges)
-        min_index = front_ranges.index(min_range)
-        angle = front_angles[min_index]
-        self.avoid_obstacle(angle, min_range)
+        self.pub = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.sub = self.create_subscription(LaserScan, '/scan', self.callback, 10)
 
-    def avoid_obstacle(self, angle, min_range):
-        if min_range < 0.5:
-            if angle > 0:
-                steer_angle = -1.0
-            else:
-                steer_angle = 1.0
-            speed = 0.1
+    def callback(self, msg):
+        move = Twist()
+
+        # Laser scan range threshold
+        thr1 = 0.8
+        thr2 = 0.8
+
+        if msg.ranges[0] > thr1 and msg.ranges[15] > thr2 and msg.ranges[345] > thr2:
+            # No obstacles ahead, move forward
+            move.linear.x = 0.5
+            move.angular.z = 0.0
         else:
-            steer_angle = 0.0
-            speed = 0.2
+            # Obstacle detected, stop and rotate
+            move.linear.x = 0.0
+            move.angular.z = 0.5
 
-        twist = Twist()
-        twist.linear.x = speed
-        twist.angular.z = steer_angle
-        self.cmd_vel_pub.publish(twist)
-
+        self.pub.publish(move)
 
 def main(args=None):
     rclpy.init(args=args)
-    obstacle_avoidance = ObstacleAvoidance()
-    rclpy.spin(obstacle_avoidance)
-    obstacle_avoidance.destroy_node()
+    node = ObstacleDetection()
+    rclpy.spin(node)
+    node.destroy_node()
     rclpy.shutdown()
-
 
 if __name__ == '__main__':
     main()
